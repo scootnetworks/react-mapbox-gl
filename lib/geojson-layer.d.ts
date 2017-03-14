@@ -1,0 +1,36 @@
+/// <reference types="mapbox-gl" />
+/// <reference types="react" />
+import * as React from 'react';
+import * as MapboxGL from 'mapbox-gl/dist/mapbox-gl';
+import { SourceOptionData } from './util/types';
+export interface Props {
+    id?: string;
+    data: SourceOptionData;
+    sourceOptions: MapboxGL.VectorSource | MapboxGL.RasterSource | MapboxGL.GeoJSONSource | MapboxGL.GeoJSONSourceRaw;
+    before?: string;
+    fillLayout?: MapboxGL.FillLayout;
+    symbolLayout?: MapboxGL.SymbolLayout;
+    circleLayout?: MapboxGL.CircleLayout;
+    lineLayout?: MapboxGL.LineLayout;
+    linePaint?: MapboxGL.LinePaint;
+    symbolPaint?: MapboxGL.SymbolPaint;
+    circlePaint?: MapboxGL.CirclePaint;
+    fillPaint?: MapboxGL.FillPaint;
+}
+export interface Context {
+    map: MapboxGL.Map;
+}
+export default class GeoJSONLayer extends React.Component<Props, void> {
+    context: Context;
+    static contextTypes: {
+        map: React.Requireable<any>;
+    };
+    private id;
+    private source;
+    private layerIds;
+    private createLayer;
+    componentWillMount(): void;
+    componentWillUnmount(): void;
+    componentWillReceiveProps(props: Props): void;
+    render(): null;
+}
